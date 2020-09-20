@@ -2,22 +2,28 @@ package com.dollardeveloper.signinpage2.signinpage2.model;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
-//@UniqueConstraint(columnNames = "email"))
+
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //@Column(name ="first_name")
+
     private String firstName;
 
-    //@Column(name = "last_name")
+
     private String lastName;
     private String email;
     private String password;
+
+    @OneToMany
+    private List<Post> posts;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable
